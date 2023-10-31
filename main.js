@@ -2,7 +2,7 @@ import "./style.css";
 import "./src/styles/header.scss";
 import "./src/styles/ip-infos.scss";
 import arrowForm from "./src/assets/icon-arrow.svg";
-import iconLocation from "./src/assets/icon-location.svg"
+import iconLocation from "./src/assets/icon-location.svg";
 import { getIpData } from "./src/fetch";
 import { getMyIP } from "./src/ipFetch";
 
@@ -17,16 +17,19 @@ let map = null;
 let marker = null;
 
 const renderApp = () => {
-  document.querySelector("#app").innerHTML = `<header class="header">
-  <h1>IP Address Tracker</h1>
+  document.querySelector(
+    "#app"
+  ).innerHTML = `<header class="header" aria-labelledby="header__title">
+  <h1 id="header__title">IP Address Tracker</h1>
   <form data-js="search-form">
     <div class="input-container">
       <input type="text" name="ip-adress" placeholder="Search for any IP address">
-      <button type="submit" class="search-btn"><img src="${arrowForm}" /></button>
+      <button type="submit" class="search-btn" title="Send Form"><img src="${arrowForm}" alt="Arrow"/></button>
     </div>
   </form>
   </header>
-  <section class="section hidden">
+  <main>
+  <section class="section hidden" aria-label="Ip Date Section">
   <ul>
     <li>
       <span>IP Address</span>
@@ -46,7 +49,8 @@ const renderApp = () => {
     </li>
   </ul>
 </section>
-<div id="map"></div>
+<div id="map" role="region"></div>
+</main>
 `;
 
   const searchForm = document.querySelector("[data-js='search-form']");
@@ -113,8 +117,10 @@ const showIpAddressData = () => {
 const searchIpAddressData = async (e) => {
   e.preventDefault();
   const inputValue = e.target["ip-adress"].value;
-  const isValidIp = /^((1?\d{1,2}|2([0-4]\d|5[0-5]))\.){3}(1?\d{1,2}|2([0-4]\d|5[0-5]))$|^$/
-    .test(inputValue);
+  const isValidIp =
+    /^((1?\d{1,2}|2([0-4]\d|5[0-5]))\.){3}(1?\d{1,2}|2([0-4]\d|5[0-5]))$|^$/.test(
+      inputValue
+    );
 
   if (isValidIp) {
     renderDataIntoDOM(inputValue);
