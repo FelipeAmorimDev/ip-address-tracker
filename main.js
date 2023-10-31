@@ -21,7 +21,7 @@ const renderApp = () => {
   <h1>IP Address Tracker</h1>
   <form data-js="search-form">
     <div class="input-container">
-      <input type="text" name="ip-adress" placeholder="Search for any IP address or domain">
+      <input type="text" name="ip-adress" placeholder="Search for any IP address">
       <button type="submit" class="search-btn"><img src="${arrowForm}" /></button>
     </div>
   </form>
