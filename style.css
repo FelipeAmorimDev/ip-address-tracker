@@ -44,10 +44,14 @@ input, button, textarea {
   z-index: 0;
 }
 
+@media (max-width:600px) {
+  #map{
+    height: calc(100vh - 306.91px);
+  }
+}
+
 @media (max-width:500px){
   #map {
     height: 543.09px !important;
-
-   
   }
 }

@@ -2,10 +2,12 @@ import "./style.css";
 import "./src/styles/header.scss";
 import "./src/styles/ip-infos.scss";
 import arrowForm from "./src/assets/icon-arrow.svg";
+import iconLocation from "./src/assets/icon-location.svg"
 import { getIpData } from "./src/fetch";
+import { getMyIP } from "./src/ipFetch";
 
 const myIcon = L.icon({
-  iconUrl: "src/assets/icon-location.svg",
+  iconUrl: iconLocation,
   iconSize: [46, 56],
   iconAnchor: [46, 70],
   popupAnchor: [-25, -35],
@@ -49,10 +51,12 @@ const renderApp = () => {
 
   const searchForm = document.querySelector("[data-js='search-form']");
   const ipTextContainer = document.querySelector("[data-js='ip-text']");
-  const locationTextContainer = document
-    .querySelector("[data-js='location-text']");
-  const timezoneTextContainer = document
-    .querySelector("[data-js='timezone-text']");
+  const locationTextContainer = document.querySelector(
+    "[data-js='location-text']"
+  );
+  const timezoneTextContainer = document.querySelector(
+    "[data-js='timezone-text']"
+  );
   const ispTexttContainer = document.querySelector("[data-js='isp-text']");
 
   return [
@@ -78,9 +82,9 @@ const renderDataIntoDOM = async (ipAddress) => {
   ipTextContainer.textContent = ip;
   locationTextContainer.innerHTML = `<p>${location.city}, </p><p>${location.region}</p>`;
   timezoneTextContainer.textContent = `UTC ${location.timezone}`;
-  ispTextContainer.textContent = isp
-  
-  showIpLocationInMap(location, ip)
+  ispTextContainer.textContent = isp;
+
+  showIpLocationInMap(location, ip);
   showIpAddressData();
 };
 
@@ -90,11 +94,13 @@ const showIpLocationInMap = (location, ip) => {
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
-  
-  map.setView([location.lat,location.lng])
-  marker = L.marker([location.lat,location.lng], { icon: myIcon }).addTo(map);
-  marker.bindPopup(`IP Address: <b>${ip}</b><br>Location: <b>${location.city}</b>`);
-} 
+
+  map.setView([location.lat, location.lng]);
+  marker = L.marker([location.lat, location.lng], { icon: myIcon }).addTo(map);
+  marker.bindPopup(
+    `IP Address: <b>${ip}</b><br>Location: <b>${location.city}</b>`
+  );
+};
 
 const showIpAddressData = () => {
   const ipAddressDate = document.querySelector(".section");
@@ -106,17 +112,25 @@ const showIpAddressData = () => {
 
 const searchIpAddressData = async (e) => {
   e.preventDefault();
-
   const inputValue = e.target["ip-adress"].value;
+  const isValidIp = /^((1?\d{1,2}|2([0-4]\d|5[0-5]))\.){3}(1?\d{1,2}|2([0-4]\d|5[0-5]))$|^$/
+    .test(inputValue);
 
-  renderDataIntoDOM(inputValue);
-  e.target.reset();
+  if (isValidIp) {
+    renderDataIntoDOM(inputValue);
+    e.target.reset();
+    return;
+  }
+
+  alert("Ip Address Invalid!!!");
 };
 
-window.onload = () => {
+window.onload = async () => {
+  const { ip } = await getMyIP();
+
   map = L.map("map").setView([37.40599, -122.078514], 17);
-  map.zoomControl.remove()
-  renderDataIntoDOM();
+  map.zoomControl.remove();
+  renderDataIntoDOM(ip);
 };
 
 searchForm.addEventListener("submit", searchIpAddressData);

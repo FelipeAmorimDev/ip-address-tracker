@@ -45,7 +45,7 @@
   @media (max-width: 1230px) {
     display: flex;
     justify-content: center;
-    max-width: 327px;
+    max-width: calc(100% - 48px);
     text-align: center;
     top: 170px;
     padding: 26px 24px 24px;
