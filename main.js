@@ -17,9 +17,8 @@ let map = null;
 let marker = null;
 
 const renderApp = () => {
-  document.querySelector(
-    "#app"
-  ).innerHTML = `<header class="header" aria-labelledby="header__title">
+  document.querySelector("#app").innerHTML = `
+  <header class="header" aria-labelledby="header__title">
   <h1 id="header__title">IP Address Tracker</h1>
   <form data-js="search-form">
     <div class="input-container">
@@ -55,12 +54,10 @@ const renderApp = () => {
 
   const searchForm = document.querySelector("[data-js='search-form']");
   const ipTextContainer = document.querySelector("[data-js='ip-text']");
-  const locationTextContainer = document.querySelector(
-    "[data-js='location-text']"
-  );
-  const timezoneTextContainer = document.querySelector(
-    "[data-js='timezone-text']"
-  );
+  const locationTextContainer = document
+    .querySelector("[data-js='location-text']");
+  const timezoneTextContainer = document
+    .querySelector("[data-js='timezone-text']");
   const ispTexttContainer = document.querySelector("[data-js='isp-text']");
 
   return [
@@ -118,9 +115,8 @@ const searchIpAddressData = async (e) => {
   e.preventDefault();
   const inputValue = e.target["ip-adress"].value;
   const isValidIp =
-    /^((1?\d{1,2}|2([0-4]\d|5[0-5]))\.){3}(1?\d{1,2}|2([0-4]\d|5[0-5]))$|^$/.test(
-      inputValue
-    );
+    /^((1?\d{1,2}|2([0-4]\d|5[0-5]))\.){3}(1?\d{1,2}|2([0-4]\d|5[0-5]))$|^$/
+    .test(inputValue);
 
   if (isValidIp) {
     renderDataIntoDOM(inputValue);
