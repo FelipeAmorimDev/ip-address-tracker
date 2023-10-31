@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:focus {
+  outline: none;
+  border: 3px dashed hsla(220, 100%, 50%, 80%) !important;
+}
+
+:root {
+  --primary: hsl(0, 0%, 17%);
+  --secondary: hsl(0, 0%, 59%);
+}
+
+::placeholder{
+  color: #2C2C2C;
+  opacity: .5;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  background-color: antiquewhite;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+input, button, textarea {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+}
+
+#map{
+  height: calc(100vh - 284.91px);
+  z-index: 0;
+}
+
+@media (max-width:500px){
+  #map {
+    height: 543.09px !important;
+
+   
+  }
+}

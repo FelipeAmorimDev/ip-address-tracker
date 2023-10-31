@@ -1,0 +1,62 @@
+.header {
+  margin: 0 auto;
+  text-align: center;
+  padding: 33px 0px 128px;
+  background: url("../assets/pattern-bg-desktop.png") no-repeat;
+  background-size: cover;
+  overflow: hidden;
+
+  h1 {
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: -0.29px;
+    line-height: 1.06;
+    margin-bottom: 31px;
+  }
+
+  div {
+    max-width: 555px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    
+    input {
+      padding: 18px 0px 19px 24px;
+      width: 100%;
+      border-radius: 15px;
+      border: 0;
+      outline: none;
+      color: var(--primary);
+      max-height: 59px;
+    }
+
+    button {
+      padding: 23px 26px;
+      background: black;
+      max-height: 59px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: background .2s;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      height: 100%;
+      
+      &:hover{
+       background: #3F3F3F; 
+      }
+    }
+  }
+
+  @media (max-width:500px) {
+    padding: 26px 24px 157px;
+  }
+}
+
+.input-container input:focus ~ .search-btn{
+  outline: none;
+  border: 3px dashed hsla(220, 100%, 50%, 80%) !important;
+}
