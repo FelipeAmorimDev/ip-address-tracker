@@ -1,4 +1,4 @@
-const ApiKEY = 'at_teVPcnqyHuimabol5LMahDoXogPNg'
+const ApiKEY = 'at_p8iPyG9jHowVt5AxiLjGN6uFndZdR'
 const baseURL = 'https://geo.ipify.org/api/v2/'
 
 export const getIpData = async (ip = "177.204.213.108") => {
